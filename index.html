@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Munch.Euphoric</title>
+
+  <!-- FAVICON / LOGO DI TAB -->
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3075/3075977.png" type="image/png">
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins",sans-serif;}
+    body{background:#0d0d0d;color:#fff;line-height:1.6;scroll-behavior:smooth;}
+
+    /* GOLD GRADIENT */
+    :root {
+      --gold: linear-gradient(45deg, #FFD700, #FFC300, #FFB700);
+    }
+
+    /* NAVBAR */
+    nav{
+      width:100%;position:fixed;top:0;left:0;
+      display:flex;justify-content:space-between;align-items:center;
+      padding:15px 5%;background:rgba(0,0,0,0.85);backdrop-filter:blur(6px);
+      z-index:1000;border-bottom:1px solid #FFD70033;
+    }
+    nav h1{
+      font-size:1.4rem;
+      background:var(--gold);-webkit-background-clip:text;color:transparent;
+      font-weight:700;letter-spacing:1px;
+    }
+    nav ul{display:flex;list-style:none;}
+    nav ul li{margin-left:20px;}
+    nav ul li a{
+      text-decoration:none;color:#fff;font-weight:500;transition:.3s;
+    }
+    nav ul li a:hover{
+      color:#FFD700;
+      text-shadow:0 0 8px #FFD700;
+    }
+
+    /* HERO / HOME */
+    header{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      text-align:center;
+      position:relative;
+      background:
+        linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.75)),
+        url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      padding:0 20px;
+      overflow:hidden;
+    }
+    header::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(120deg,rgba(255,215,0,0.15),transparent,rgba(255,215,0,0.15));
+      animation:shineMove 6s linear infinite;
+    }
+    @keyframes shineMove{
+      0%{transform:translateX(-100%);}
+      100%{transform:translateX(100%);}
+    }
+    header h2{
+      font-size:2.8rem;
+      background:var(--gold);
+      -webkit-background-clip:text;
+      color:transparent;
+      margin-bottom:15px;
+      text-transform:uppercase;
+      animation:shine 4s infinite linear;
+      position:relative;
+      z-index:2;
+    }
+    header p,header a{position:relative;z-index:2;}
+    header p{max-width:650px;margin-bottom:25px;}
+    header a{
+      background:var(--gold);color:#000;padding:12px 25px;border-radius:30px;
+      text-decoration:none;font-weight:600;transition:.3s;
+      box-shadow:0 0 15px #FFD70066;
+    }
+    header a:hover{box-shadow:0 0 25px #FFD700cc;transform:scale(1.05);}
+
+    /* SHINE EFFECT TEKS */
+    @keyframes shine {
+      0%{text-shadow:0 0 5px #FFD700;}
+      50%{text-shadow:0 0 20px #FFD700,0 0 30px #FFA500;}
+      100%{text-shadow:0 0 5px #FFD700;}
+    }
+
+    /* SECTIONS */
+    section{padding:80px 5%;text-align:center;}
+    section h3{
+      font-size:1.8rem;
+      background:var(--gold);-webkit-background-clip:text;color:transparent;
+      margin-bottom:15px;
+    }
+    section p{max-width:700px;margin:auto;margin-bottom:40px;}
+
+    /* ABOUT */
+    #about{
+      background:linear-gradient(135deg,#111,#1a1a1a);
+      color:#ddd;
+      border-top:1px solid #FFD70033;
+      border-bottom:1px solid #FFD70033;
+    }
+
+    /* PRODUCTS */
+    #products{
+      background:linear-gradient(to right,#000,#222);
+      border-top:1px solid #FFD70044;
+      border-bottom:1px solid #FFD70044;
+    }
+    .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;}
+    .card{
+      background:#1a1a1a;border-radius:15px;overflow:hidden;
+      box-shadow:0 4px 12px rgba(0,0,0,0.6);transition:.3s;cursor:pointer;
+      border:1px solid #FFD70033;
+    }
+    .card img{width:100%;height:200px;object-fit:cover;}
+    .card h4{
+      margin:15px 0;font-size:1.2rem;
+      background:var(--gold);-webkit-background-clip:text;color:transparent;
+    }
+    .card p{padding:0 15px 20px;color:#ccc;}
+    .card:hover{transform:translateY(-5px);box-shadow:0 0 25px #FFD70055;}
+
+    /* TESTIMONI */
+    #testimonial{
+      background:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80') center/cover fixed;
+      position:relative;color:#fff;
+    }
+    #testimonial::before{
+      content:"";
+      position:absolute;top:0;left:0;width:100%;height:100%;
+      background:rgba(0,0,0,.7);
+    }
+    #testimonial h3,
+    #testimonial .testimonial{position:relative;z-index:2;}
+    .testimonial{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
+    .testi{
+      background:#111;border-radius:15px;padding:20px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.5);
+      border:1px solid #FFD70033;
+      font-style:italic;
+    }
+    .testi h5{margin-top:15px;color:#FFD700;font-size:.95rem;}
+
+    /* CONTACT */
+    #contact{
+      background:linear-gradient(135deg,#1a1a1a,#000);
+      border-top:1px solid #FFD70055;
+      border-bottom:1px solid #FFD70055;
+      color:#ccc;
+    }
+    .contact-btns{
+      margin-top:20px;
+      display:flex;
+      justify-content:center;
+      gap:15px;
+      flex-wrap:wrap;
+    }
+    .contact-btns a{
+      display:inline-block;
+      padding:12px 25px;
+      background:var(--gold);
+      color:#000;
+      font-weight:600;
+      border-radius:30px;
+      text-decoration:none;
+      box-shadow:0 0 15px #FFD70066;
+      transition:.3s;
+    }
+    .contact-btns a:hover{
+      box-shadow:0 0 25px #FFD700cc;
+      transform:scale(1.05);
+    }
+
+    /* FOOTER */
+    footer{
+      background:#000;color:#fff;padding:50px 5% 20px;margin-top:60px;text-align:left;
+      border-top:1px solid #FFD70044;
+    }
+    footer .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px;margin-bottom:20px;}
+    footer h4{
+      margin-bottom:15px;font-size:1.1rem;
+      background:var(--gold);-webkit-background-clip:text;color:transparent;
+    }
+    footer p,footer a{color:#ccc;text-decoration:none;font-size:.9rem;line-height:1.8;}
+    footer a:hover{color:#FFD700;text-shadow:0 0 8px #FFD700;}
+    footer .copy{text-align:center;margin-top:20px;font-size:.85rem;color:#888;}
+
+    /* RESPONSIVE */
+    @media(max-width:768px){
+      nav ul{display:none;}
+      nav h1{font-size:1.1rem;}
+      header h2{font-size:1.8rem;}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <h1>Munch.Euphoric</h1>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#testimonial">Testimonial</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header id="home">
+    <h2>Risol • Mochi • Spaghetti</h2>
+    <p>Premium food dengan cita rasa internasional & sentuhan elegan. Untuk Anda yang menghargai kualitas.</p>
+    <a href="#products">Lihat Menu</a>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h3>Tentang Kami</h3>
+    <p>Kami menghadirkan makanan berkualitas tinggi dengan konsep eksklusif: risol gurih renyah, mochi manis kenyal, dan spaghetti autentik Italia. Dibuat khusus untuk pecinta rasa premium.</p>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products">
+    <h3>Menu Premium</h3>
+    <div class="products">
+      <div class="card">
+        <img src="img/risol.png" alt="Risol">
+        <h4>Risol Gold</h4>
+        <p>Risol renyah dengan isian daging,telur,mayones,sayuran dibalut kelezatan eksklusif.</p>
+      </div>
+      <div class="card">
+        <img src="img/mochi.jpg" alt="Mochi">
+        <h4>Mochi Royale</h4>
+        <p>Mochi lembut dengan varian isian cokelat  & buah-buahan yg berbeda.</p>
+      </div>
+      <div class="card">
+        <img src="img/spagetti.jfif" alt="Spaghetti">
+        <h4>Spaghetti Deluxe</h4>
+        <p>Spaghetti dengan saus bolognese daging premium & rempah pilihan.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONI -->
+  <section id="testimonial">
+    <h3>Testimonial</h3>
+    <div class="testimonial">
+      <div class="testi">
+        “Risol emasnya bikin ketagihan, rasanya beda kelas!” 
+        <h5>- Andi</h5>
+      </div>
+      <div class="testi">
+        “Mochi Royale teksturnya lembut banget, manisnya pas & eksklusif.” 
+        <h5>- Sari</h5>
+      </div>
+      <div class="testi">
+        “Spaghetti kaya rasa, bener-bener pengalaman makan premium.” 
+        <h5>- Budi</h5>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h3>Hubungi Kami</h3>
+    <p>Email: muncheuphoric@gmail.com | WhatsApp: +6282312407263</p>
+    <div class="contact-btns">
+      <a href="https://wa.me/6282312407263" target="_blank">PESAN SEKARANG</a>
+      
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="cols">
+      <div>
+        <h4>Munch.Euphoric</h4>
+        <p>Makanan premium untuk jiwa elegan. Nikmati kelezatan berkelas.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <p><a href="#home">Home</a></p>
+        <p><a href="#about">About</a></p>
+        <p><a href="#products">Products</a></p>
+        <p><a href="#testimonial">Testimonial</a></p>
+        <p><a href="#contact">Contact</a></p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>Email: muncheuphoric@gmail.com</p>
+        <p>Phone: +6282312407263</p>
+        <p>Alamat: cibitung, Indonesia</p>
+      </div>
+      <div>
+        <h4>Follow Us</h4>
+        <p><a href="https://instagram.com/munch.euphoric">Instagram</a></p>
+        <p><a href="#">Facebook</a></p>
+        <p><a href="#">TikTok</a></p>
+      </div>
+    </div>
+    <p class="copy">© 2025 Munch.Euphoric All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
